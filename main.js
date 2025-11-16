@@ -1,6 +1,13 @@
 //TODO add imports if needed
 //import { exMain } from "./exclude/exampleAss2.js"
-import {inputValidation} from "./src/inputValidation.js"
+
+export function inputValidation(inputNumber) {
+    if (/^[01]+$/.test(inputNumber)) {
+        return inputNumber;
+    } else {
+        return null;
+    }
+}
 //TODO add/change doc as needed
 /**
  * TODO - Write functional code for this application. You can call any other function, but usage of ".toString(numberSystem)" and "Number.parseInt(number, numberSystem)" is forbidden (only permitted when used on individual digits).
