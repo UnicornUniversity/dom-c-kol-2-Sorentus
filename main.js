@@ -1,10 +1,15 @@
 //TODO add imports if needed
 //import { exMain } from "./exclude/exampleAss2.js"
+import {inputValidation} from "./src/inputValidation.js"
 //TODO add/change doc as needed
 /**
  * TODO - Write functional code for this application. You can call any other function, but usage of ".toString(numberSystem)" and "Number.parseInt(number, numberSystem)" is forbidden (only permitted when used on individual digits).
  * The main function which calls the application. 
  * TODO - Please, add specific description here for the application purpose.
+ *
+ * This program converts a binary number entered by the user into its decimal equivalent.
+ * The input is validated to ensure it contains only the digits 0 and 1.
+ *
  * @param {string} inputNumber number that is being converted
  * @param {number} inputNumberSystem numerical system that the inputNumber is being converted from
  * @param {number} outputNumberSystem numerical system that the inputNumber is being converted into
@@ -12,6 +17,24 @@
  */
 export function main(inputNumber, inputNumberSystem, outputNumberSystem) {
   //TODO code
+	  let dtoOut; 
+
+    if (inputNumberSystem === 2 && outputNumberSystem === 10) {
+        let result = 0;
+
+        const validated = inputValidation(inputNumber);
+        if (validated === null) {
+            throw new Error("Invalid binary number.");
+        }
+
+        for (let i = 0; i < validated.length; i++) {
+            result = result * 2 + Number(validated[i]);
+        }
+
+        dtoOut = result.toString();
+    } else {
+        throw new Error("Conversion not supported.");
+    }
   //let dtoOut = exMain(inputNumber, inputNumberSystem, outputNumberSystem);
   return dtoOut;
 }
@@ -22,7 +45,7 @@ export function main(inputNumber, inputNumberSystem, outputNumberSystem) {
  * @returns {Array} array of numbers refering to permitted input systems
  */
 export function permittedInputSystems() {
-	return [10, 2];
+	return [2];
 }
 
 /**
@@ -31,5 +54,5 @@ export function permittedInputSystems() {
  * @returns {Array} array of numbers refering to permitted output systems
  */
 export function permittedOutputSystems() {
-	return [10, 2];
+	return [10];
 }
